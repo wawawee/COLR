@@ -87,50 +87,50 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header 
-      className="sticky top-0 z-40 w-full border-b backdrop-blur-md px-4 py-2.5 transition-colors duration-200"
+      className="sticky top-0 z-40 w-full border-b backdrop-blur-md px-3 sm:px-4 py-1.5 transition-colors duration-200"
       style={applyThemeToApp ? {
         backgroundColor: `${tokens.surface}f6`,
         borderColor: tokens.surfaceBorder,
         color: tokens.text,
       } : undefined}
     >
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
         {/* Brand & Title */}
-        <div className="flex items-center justify-between w-full md:w-auto gap-3">
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center justify-between w-full md:w-auto gap-2.5">
+          <div className="flex items-center gap-2">
             <div 
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md transition-all duration-200"
+              className="w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-white shadow-xs shrink-0 transition-all duration-200"
               style={applyThemeToApp ? {
                 background: `linear-gradient(135deg, ${tokens.primary}, ${tokens.secondary})`,
                 color: tokens.primaryForeground,
-                boxShadow: `0 4px 12px ${tokens.primary}35`,
-                borderRadius: `${Math.min(tokens.radius + 3, 14)}px`
+                boxShadow: `0 2px 8px ${tokens.primary}35`,
+                borderRadius: `${Math.min(tokens.radius, 10)}px`
               } : undefined}
             >
-              <Palette className="w-5 h-5" />
+              <Palette className="w-4 h-4" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <h1 
-                  className="text-base font-bold tracking-tight transition-colors"
+                  className="text-sm font-bold tracking-tight leading-none transition-colors"
                   style={applyThemeToApp ? { color: tokens.text } : undefined}
                 >
                   ColorCraft Studio
                 </h1>
                 <span 
-                  className="text-[10px] font-semibold tracking-wide uppercase px-1.5 py-0.5 rounded border transition-colors"
+                  className="text-[9px] font-semibold tracking-wide uppercase px-1.5 py-0.2 rounded border leading-none transition-colors"
                   style={applyThemeToApp ? {
                     backgroundColor: `${tokens.primary}18`,
                     borderColor: `${tokens.primary}35`,
                     color: tokens.primary,
-                    borderRadius: `${Math.min(tokens.radius, 6)}px`
+                    borderRadius: `${Math.min(tokens.radius, 5)}px`
                   } : undefined}
                 >
                   Tailwind v4 & AI
                 </span>
               </div>
               <p 
-                className="text-xs hidden sm:block transition-colors"
+                className="text-[10px] leading-tight hidden sm:block transition-colors opacity-75 mt-0.5"
                 style={applyThemeToApp ? { color: tokens.textMuted } : undefined}
               >
                 Interaktiv färgjusteringsmodul, 100 Figma-kombinationer & temalägen
@@ -141,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-1.5 md:hidden">
             <button
               onClick={onToggleApplyThemeToApp}
-              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              className="h-8 w-8 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
               style={applyThemeToApp ? {
                 backgroundColor: `${tokens.primary}20`,
                 borderColor: tokens.primary,
@@ -155,11 +155,11 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               title="Växla helapps-tema"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={onToggleSidebar}
-              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              className="h-8 w-8 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
               style={{
                 backgroundColor: sidebarOpen ? `${tokens.primary}20` : tokens.surface,
                 borderColor: sidebarOpen ? tokens.primary : tokens.surfaceBorder,
@@ -168,11 +168,11 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               title="Färgreglar"
             >
-              <SlidersHorizontal className="w-4 h-4" />
+              <SlidersHorizontal className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={onOpenChatbot}
-              className="h-9 w-9 rounded-lg border text-amber-500 text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
+              className="h-8 w-8 rounded-lg border text-amber-500 text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
               style={{
                 borderColor: tokens.surfaceBorder,
                 backgroundColor: tokens.surface,
@@ -180,11 +180,11 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               title="AI Chatbot & Sökning"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={onOpenThemeManager}
-              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
+              className="h-8 w-8 rounded-lg border text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
               style={{
                 borderColor: tokens.surfaceBorder,
                 backgroundColor: tokens.surface,
@@ -193,11 +193,11 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               title="Temahanterare"
             >
-              <FolderHeart className="w-4 h-4 text-indigo-500" />
+              <FolderHeart className="w-3.5 h-3.5 text-indigo-500" />
             </button>
             <button
               onClick={onOpenExport}
-              className="h-9 px-3 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 shadow-xs cursor-pointer shrink-0"
+              className="h-8 px-2.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 shadow-xs cursor-pointer shrink-0"
               style={{
                 backgroundColor: tokens.primary,
                 color: tokens.primaryForeground,
@@ -327,7 +327,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Whole App Theme Toggle */}
           <button
             onClick={onToggleApplyThemeToApp}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap"
             style={applyThemeToApp ? {
               backgroundColor: `${tokens.primary}20`,
               borderColor: tokens.primary,
@@ -356,7 +356,7 @@ export const Header: React.FC<HeaderProps> = ({
                   backgroundEffect === 'pillars' ? 'none' : 'spotlight';
                 onChangeBackgroundEffect(nextEffect);
               }}
-              className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:opacity-90 whitespace-nowrap"
+              className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:opacity-90 whitespace-nowrap"
               style={{
                 backgroundColor: backgroundEffect !== 'none' ? `${tokens.primary}18` : tokens.background,
                 borderColor: backgroundEffect !== 'none' ? tokens.primary : tokens.surfaceBorder,
@@ -379,7 +379,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* AI Design Assistant Button */}
           <button
             onClick={onOpenChatbot}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
             style={{
               backgroundColor: `${tokens.accent}15`,
               borderColor: `${tokens.accent}35`,
@@ -395,7 +395,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Import URL/Image Button */}
           <button
             onClick={onOpenImportModal}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
             style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
@@ -411,7 +411,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Manager Button */}
           <button
             onClick={onOpenThemeManager}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
             style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
@@ -427,7 +427,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Slumpa Färgpalett (Harmonisk standard) */}
           <button
             onClick={onRandomize}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
             style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
@@ -444,7 +444,7 @@ export const Header: React.FC<HeaderProps> = ({
           {onCycleColors && (
             <button
               onClick={onCycleColors}
-              className="h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+              className="h-8 px-2 rounded-lg text-xs font-semibold border inline-flex items-center gap-1 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
               style={{
                 backgroundColor: tokens.background,
                 borderColor: tokens.surfaceBorder,
@@ -462,7 +462,7 @@ export const Header: React.FC<HeaderProps> = ({
           {onShuffleColors && (
             <button
               onClick={onShuffleColors}
-              className="h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+              className="h-8 px-2 rounded-lg text-xs font-semibold border inline-flex items-center gap-1 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
               style={{
                 backgroundColor: tokens.background,
                 borderColor: tokens.surfaceBorder,
@@ -479,7 +479,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Slumpa Mellanläge (Sweet Spot) Button */}
           <button
             onClick={onRandomizeSweetSpot}
-            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all hover:opacity-90 cursor-pointer shadow-xs whitespace-nowrap"
+            className="h-8 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all hover:opacity-90 cursor-pointer shadow-xs whitespace-nowrap"
             style={{
               backgroundColor: `${tokens.accent}22`,
               borderColor: tokens.accent,
@@ -495,7 +495,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Dämpa Ytterligheter / Mjuk Kontrast Button */}
           <button
             onClick={onToggleSoftenExtremes || onSnapToSweetSpot}
-            className={`h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap ${
+            className={`h-8 px-2 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap ${
               softenActive ? 'ring-1' : 'hover:opacity-90'
             }`}
             style={{
@@ -528,7 +528,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Invert Light/Dark Theme */}
           <button
             onClick={onToggleThemeMode}
-            className="h-9 w-9 inline-flex items-center justify-center rounded-lg border transition-colors cursor-pointer shadow-xs shrink-0"
+            className="h-8 w-8 inline-flex items-center justify-center rounded-lg border transition-colors cursor-pointer shadow-xs shrink-0"
             style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
@@ -537,13 +537,13 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             title={isDarkTheme ? 'Växla till ljust tema' : 'Växla till mörkt tema'}
           >
-            {isDarkTheme ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
+            {isDarkTheme ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-indigo-500" />}
           </button>
 
           {/* Export Button */}
           <button
             onClick={onOpenExport}
-            className="h-9 px-3.5 rounded-lg text-xs font-bold shadow-xs inline-flex items-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
+            className="h-8 px-3 rounded-lg text-xs font-bold shadow-xs inline-flex items-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
             style={{
               backgroundColor: tokens.primary,
               color: tokens.primaryForeground,
