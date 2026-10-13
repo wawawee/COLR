@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@keyframes pillarDrift1 {
+  0%, 100% {
+    transform: translateX(0%) scaleX(1) scaleY(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateX(18%) scaleX(1.15) scaleY(1.05);
+    opacity: 0.95;
+  }
+}
+
+@keyframes pillarDrift2 {
+  0%, 100% {
+    transform: translateX(0%) scaleX(1.1) scaleY(1.02);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-22%) scaleX(0.9) scaleY(0.98);
+    opacity: 0.85;
+  }
+}
+
+@keyframes pillarDrift3 {
+  0%, 100% {
+    transform: translateX(0%) scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(12%) scaleX(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spotlightOrbit {
+  0% {
+    transform: translate(-30%, -20%) scale(1);
+  }
+  25% {
+    transform: translate(25%, -10%) scale(1.15);
+  }
+  50% {
+    transform: translate(40%, 25%) scale(0.95);
+  }
+  75% {
+    transform: translate(-15%, 35%) scale(1.1);
+  }
+  100% {
+    transform: translate(-30%, -20%) scale(1);
+  }
+}
+
+@keyframes spotlightOrbitRev {
+  0% {
+    transform: translate(35%, 30%) scale(1);
+  }
+  25% {
+    transform: translate(-20%, 20%) scale(1.1);
+  }
+  50% {
+    transform: translate(-35%, -15%) scale(0.9);
+  }
+  75% {
+    transform: translate(20%, -25%) scale(1.2);
+  }
+  100% {
+    transform: translate(35%, 30%) scale(1);
+  }
+}
+
+@keyframes beamPulse {
+  0%, 100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-pillar-1 {
+  animation: pillarDrift1 8s ease-in-out infinite;
+}
+
+.animate-pillar-2 {
+  animation: pillarDrift2 11s ease-in-out infinite;
+}
+
+.animate-pillar-3 {
+  animation: pillarDrift3 14s ease-in-out infinite;
+}
+
+.animate-spotlight-1 {
+  animation: spotlightOrbit 12s ease-in-out infinite;
+}
+
+.animate-spotlight-2 {
+  animation: spotlightOrbitRev 15s ease-in-out infinite;
+}
+
+.animate-beam-pulse {
+  animation: beamPulse 4s ease-in-out infinite;
+}

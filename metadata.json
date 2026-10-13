@@ -1,0 +1,6 @@
+{
+  "name": "ColorCraft Studio & Agent Prompt Exporter",
+  "description": "Interaktiv färgschematestare för Vite och Next.js med komponentgalleri, färgreglar och automatisk prompt-export för AI-agenter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
