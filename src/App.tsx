@@ -527,6 +527,7 @@ export default function App() {
             onCycleColors={handleCycleColors}
             onShuffleColors={handleShuffleColors}
             onNeobrutalize={handleNeobrutalize}
+            onSaveCurrentTheme={handleSaveCurrentTheme}
             applyThemeToApp={applyThemeToApp}
           />
         </div>

@@ -17,6 +17,66 @@ export interface RGB {
   b: number; // 0 - 255
 }
 
+export interface CMYK {
+  c: number; // 0 - 100 (%)
+  m: number; // 0 - 100 (%)
+  y: number; // 0 - 100 (%)
+  k: number; // 0 - 100 (%)
+}
+
+// Convert RGB to CMYK
+export function rgbToCmyk(r: number, g: number, b: number): CMYK {
+  const rNorm = r / 255;
+  const gNorm = g / 255;
+  const bNorm = b / 255;
+
+  const k = 1 - Math.max(rNorm, gNorm, bNorm);
+  if (k >= 1) {
+    return { c: 0, m: 0, y: 0, k: 100 };
+  }
+
+  const c = (1 - rNorm - k) / (1 - k);
+  const m = (1 - gNorm - k) / (1 - k);
+  const y = (1 - bNorm - k) / (1 - k);
+
+  return {
+    c: Math.max(0, Math.min(100, Math.round(c * 100))),
+    m: Math.max(0, Math.min(100, Math.round(m * 100))),
+    y: Math.max(0, Math.min(100, Math.round(y * 100))),
+    k: Math.max(0, Math.min(100, Math.round(k * 100))),
+  };
+}
+
+// Convert CMYK to RGB
+export function cmykToRgb(c: number, m: number, y: number, k: number): RGB {
+  const cNorm = Math.max(0, Math.min(100, c)) / 100;
+  const mNorm = Math.max(0, Math.min(100, m)) / 100;
+  const yNorm = Math.max(0, Math.min(100, y)) / 100;
+  const kNorm = Math.max(0, Math.min(100, k)) / 100;
+
+  const r = 255 * (1 - cNorm) * (1 - kNorm);
+  const g = 255 * (1 - mNorm) * (1 - kNorm);
+  const b = 255 * (1 - yNorm) * (1 - kNorm);
+
+  return {
+    r: Math.max(0, Math.min(255, Math.round(r))),
+    g: Math.max(0, Math.min(255, Math.round(g))),
+    b: Math.max(0, Math.min(255, Math.round(b))),
+  };
+}
+
+// Convert Hex to CMYK
+export function hexToCmyk(hex: string): CMYK {
+  const { r, g, b } = hexToRgb(hex);
+  return rgbToCmyk(r, g, b);
+}
+
+// Convert CMYK to Hex
+export function cmykToHex(c: number, m: number, y: number, k: number): string {
+  const { r, g, b } = cmykToRgb(c, m, y, k);
+  return rgbToHex(r, g, b);
+}
+
 // Convert Hex to RGB
 export function hexToRgb(hex: string): RGB {
   let clean = hex.replace('#', '').trim();
@@ -787,4 +847,149 @@ export function neobrutalizeTheme(
     shadowMode: 'brutalist',
   };
 }
+
+// Standardiserade CMYK- och Metallic-färger (Guld, Silver, Brons, Koppar, Platinum m.fl.)
+export interface MetallicColor {
+  name: string;
+  nameEn: string;
+  hex: string;
+  cmyk: CMYK;
+  category: 'Guld' | 'Silver & Metall' | 'Brons & Koppar' | 'CMYK Primärer';
+  description: string;
+}
+
+export const METALLIC_CMYK_SWATCHES: MetallicColor[] = [
+  // Guld-skala
+  {
+    name: 'Klassiskt Guld',
+    nameEn: 'Classic Gold',
+    hex: '#D4AF37',
+    cmyk: { c: 0, m: 17, y: 74, k: 17 },
+    category: 'Guld',
+    description: 'Traditionellt tryckguld med rik gul värme (Pantone 871 C)'
+  },
+  {
+    name: 'Champagneguld',
+    nameEn: 'Champagne Gold',
+    hex: '#F7E7CE',
+    cmyk: { c: 0, m: 6, y: 17, k: 3 },
+    category: 'Guld',
+    description: 'Subtilt och lyxigt ljust guld för premiumytor'
+  },
+  {
+    name: 'Kungligt Guld',
+    nameEn: 'Royal Rich Gold',
+    hex: '#FFD700',
+    cmyk: { c: 0, m: 15, y: 100, k: 0 },
+    category: 'Guld',
+    description: 'Högmättat rent gult guld med glöd'
+  },
+  {
+    name: 'Antikt Guld',
+    nameEn: 'Antique Brass / Gold',
+    hex: '#B8860B',
+    cmyk: { c: 0, m: 27, y: 94, k: 28 },
+    category: 'Guld',
+    description: 'Dämpat djupt guld med hög kontrast'
+  },
+  // Silver & Metall
+  {
+    name: 'Klassiskt Silver',
+    nameEn: 'Sterling Silver',
+    hex: '#C0C0C0',
+    cmyk: { c: 0, m: 0, y: 0, k: 25 },
+    category: 'Silver & Metall',
+    description: 'Rent trycksilver med neutral reflektion (Pantone 877 C)'
+  },
+  {
+    name: 'Platinum',
+    nameEn: 'Platinum Sheen',
+    hex: '#E5E4E2',
+    cmyk: { c: 0, m: 0, y: 1, k: 10 },
+    category: 'Silver & Metall',
+    description: 'Superljust svalt ädelmetallsskimmer'
+  },
+  {
+    name: 'Titanium Stål',
+    nameEn: 'Titanium Steel',
+    hex: '#878681',
+    cmyk: { c: 0, m: 1, y: 5, k: 47 },
+    category: 'Silver & Metall',
+    description: 'Modern borstad metall med hög precision'
+  },
+  {
+    name: 'Krom',
+    nameEn: 'Liquid Chrome',
+    hex: '#D8D8D8',
+    cmyk: { c: 0, m: 0, y: 0, k: 15 },
+    category: 'Silver & Metall',
+    description: 'Högblank kromad finish'
+  },
+  // Koppar & Brons
+  {
+    name: 'Klassisk Koppar',
+    nameEn: 'Polished Copper',
+    hex: '#B87333',
+    cmyk: { c: 0, m: 38, y: 72, k: 28 },
+    category: 'Brons & Koppar',
+    description: 'Rik glänsande koppar med varm röd-orange underton'
+  },
+  {
+    name: 'Antik Brons',
+    nameEn: 'Antique Bronze',
+    hex: '#CD7F32',
+    cmyk: { c: 0, m: 38, y: 76, k: 20 },
+    category: 'Brons & Koppar',
+    description: 'Klassisk skulpturbrons med metallisk lyster'
+  },
+  {
+    name: 'Roséguld',
+    nameEn: 'Rose Gold',
+    hex: '#B76E79',
+    cmyk: { c: 0, m: 40, y: 34, k: 28 },
+    category: 'Brons & Koppar',
+    description: 'Sofistikerad rosa metallton med modern finish'
+  },
+  // CMYK Rena Tryckfärger
+  {
+    name: '100% Cyan (C)',
+    nameEn: 'Pure Cyan Process',
+    hex: '#00FFFF',
+    cmyk: { c: 100, m: 0, y: 0, k: 0 },
+    category: 'CMYK Primärer',
+    description: 'Process Cyan C=100'
+  },
+  {
+    name: '100% Magenta (M)',
+    nameEn: 'Pure Magenta Process',
+    hex: '#FF00FF',
+    cmyk: { c: 0, m: 100, y: 0, k: 0 },
+    category: 'CMYK Primärer',
+    description: 'Process Magenta M=100'
+  },
+  {
+    name: '100% Yellow (Y)',
+    nameEn: 'Pure Yellow Process',
+    hex: '#FFFF00',
+    cmyk: { c: 0, m: 0, y: 100, k: 0 },
+    category: 'CMYK Primärer',
+    description: 'Process Yellow Y=100'
+  },
+  {
+    name: '100% Key/Black (K)',
+    nameEn: 'Pure Key Black Process',
+    hex: '#000000',
+    cmyk: { c: 0, m: 0, y: 0, k: 100 },
+    category: 'CMYK Primärer',
+    description: 'Process Key Black K=100'
+  },
+  {
+    name: 'Rich Black (Trycksvart)',
+    nameEn: 'Rich Black / Deep Offset',
+    hex: '#0A0A0A',
+    cmyk: { c: 60, m: 40, y: 40, k: 100 },
+    category: 'CMYK Primärer',
+    description: 'Djuptätt offsettryck-svart med Cyan/Magenta bas'
+  }
+];
 

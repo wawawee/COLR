@@ -138,62 +138,71 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1.5 md:hidden">
             <button
               onClick={onToggleApplyThemeToApp}
-              className="p-2 rounded-lg border text-sm transition-colors"
+              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
               style={applyThemeToApp ? {
                 backgroundColor: `${tokens.primary}20`,
                 borderColor: tokens.primary,
                 color: tokens.primary,
-              } : undefined}
+                borderRadius: `${Math.min(tokens.radius, 8)}px`
+              } : {
+                backgroundColor: tokens.surface,
+                borderColor: tokens.surfaceBorder,
+                color: tokens.textMuted,
+                borderRadius: `${Math.min(tokens.radius, 8)}px`
+              }}
               title="Växla helapps-tema"
             >
               <Sparkles className="w-4 h-4" />
             </button>
             <button
               onClick={onToggleSidebar}
-              className="p-2 rounded-lg border text-sm transition-colors"
-              style={applyThemeToApp ? {
+              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              style={{
                 backgroundColor: sidebarOpen ? `${tokens.primary}20` : tokens.surface,
                 borderColor: sidebarOpen ? tokens.primary : tokens.surfaceBorder,
                 color: sidebarOpen ? tokens.primary : tokens.text,
-              } : undefined}
+                borderRadius: `${Math.min(tokens.radius, 8)}px`
+              }}
               title="Färgreglar"
             >
               <SlidersHorizontal className="w-4 h-4" />
             </button>
             <button
               onClick={onOpenChatbot}
-              className="p-2 rounded-lg border text-amber-500 text-sm cursor-pointer"
-              style={applyThemeToApp ? {
+              className="h-9 w-9 rounded-lg border text-amber-500 text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
+              style={{
                 borderColor: tokens.surfaceBorder,
                 backgroundColor: tokens.surface,
-              } : undefined}
+                borderRadius: `${Math.min(tokens.radius, 8)}px`
+              }}
               title="AI Chatbot & Sökning"
             >
               <Sparkles className="w-4 h-4" />
             </button>
             <button
               onClick={onOpenThemeManager}
-              className="p-2 rounded-lg border text-sm cursor-pointer"
-              style={applyThemeToApp ? {
+              className="h-9 w-9 rounded-lg border text-sm inline-flex items-center justify-center cursor-pointer shrink-0"
+              style={{
                 borderColor: tokens.surfaceBorder,
                 backgroundColor: tokens.surface,
                 color: tokens.text,
-              } : undefined}
+                borderRadius: `${Math.min(tokens.radius, 8)}px`
+              }}
               title="Temahanterare"
             >
               <FolderHeart className="w-4 h-4 text-indigo-500" />
             </button>
             <button
               onClick={onOpenExport}
-              className="px-3 py-1.5 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm"
-              style={applyThemeToApp ? {
+              className="h-9 px-3 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 shadow-xs cursor-pointer shrink-0"
+              style={{
                 backgroundColor: tokens.primary,
                 color: tokens.primaryForeground,
                 borderRadius: `${Math.min(tokens.radius, 8)}px`
-              } : undefined}
+              }}
             >
               <Share2 className="w-3.5 h-3.5" />
               <span>Export</span>
@@ -203,7 +212,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* View Switcher Tabs */}
         <div 
-          className="flex items-center p-1 rounded-xl border text-xs font-medium w-full md:w-auto overflow-x-auto justify-start transition-colors"
+          className="flex items-center p-1 rounded-xl border text-xs font-medium w-full md:w-auto overflow-x-auto justify-start transition-colors gap-0.5"
           style={applyThemeToApp ? {
             backgroundColor: tokens.background,
             borderColor: tokens.surfaceBorder,
@@ -212,16 +221,16 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <button
             onClick={() => onSelectTab('gadgets')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'gadgets'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'gadgets' ? tokens.primary : 'transparent',
               color: activeTab === 'gadgets' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
             <span>Knappar & Gadgets</span>
@@ -229,16 +238,16 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onSelectTab('components')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'components'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'components' ? tokens.primary : 'transparent',
               color: activeTab === 'components' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
             <MousePointer className="w-3.5 h-3.5" />
             <span>Knappgenerator (States)</span>
@@ -246,16 +255,16 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onSelectTab('landing')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'landing'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'landing' ? tokens.primary : 'transparent',
               color: activeTab === 'landing' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
             <LayoutTemplate className="w-3.5 h-3.5" />
             <span>Landing Page</span>
@@ -263,16 +272,16 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onSelectTab('dashboard')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'dashboard'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'dashboard' ? tokens.primary : 'transparent',
               color: activeTab === 'dashboard' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
             <Laptop className="w-3.5 h-3.5" />
             <span>Webbapp / SaaS</span>
@@ -280,16 +289,16 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onSelectTab('contrast')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'contrast'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'contrast' ? tokens.primary : 'transparent',
               color: activeTab === 'contrast' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>WCAG Kontrast</span>
@@ -297,43 +306,43 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onSelectTab('shades')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 transition-all whitespace-nowrap cursor-pointer ${
+            className={`h-8 flex items-center gap-1.5 px-3 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
               activeTab === 'shades'
-                ? 'shadow-sm font-semibold'
+                ? 'shadow-xs font-bold'
                 : 'hover:opacity-80'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: activeTab === 'shades' ? tokens.primary : 'transparent',
               color: activeTab === 'shades' ? tokens.primaryForeground : tokens.textMuted,
-              borderRadius: `${Math.min(tokens.radius, 10)}px`
-            } : undefined}
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
+            }}
           >
-            <SunMedium className="w-3.5 h-3.5 animate-pulse" />
+            <SunMedium className="w-3.5 h-3.5" />
             <span>Ljuspelare & Shades</span>
           </button>
         </div>
 
         {/* Action Controls: App Theme Toggle, Ambient Pillars, Randomize, Import, Export */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-1.5 flex-wrap lg:flex-nowrap">
           {/* Whole App Theme Toggle */}
           <button
             onClick={onToggleApplyThemeToApp}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold border transition-all cursor-pointer shadow-xs"
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap"
             style={applyThemeToApp ? {
               backgroundColor: `${tokens.primary}20`,
               borderColor: tokens.primary,
               color: tokens.primary,
               borderRadius: `${Math.min(tokens.radius, 8)}px`,
             } : {
-              backgroundColor: 'transparent',
-              borderColor: '#94a3b840',
-              color: '#94a3b8',
-              borderRadius: '8px'
+              backgroundColor: tokens.background,
+              borderColor: tokens.surfaceBorder,
+              color: tokens.textMuted,
+              borderRadius: `${Math.min(tokens.radius, 8)}px`
             }}
             title={applyThemeToApp ? 'Hela studion är temasatt efter det valda schemat (Klicka för neutralt läge)' : 'Klicka för att tillämpa schemat på hela studion'}
           >
-            <Palette className="w-3.5 h-3.5 animate-pulse" />
-            <span>{applyThemeToApp ? 'Hela Appen: Temasatt' : 'App-tema: Av'}</span>
+            <Palette className="w-3.5 h-3.5" />
+            <span>{applyThemeToApp ? 'Hela Appen: På' : 'App-tema: Av'}</span>
           </button>
 
           {/* Background Effect Selector / Toggle (Spotlight, Vågor, Gradient, Pelare, Ren) */}
@@ -347,22 +356,22 @@ export const Header: React.FC<HeaderProps> = ({
                   backgroundEffect === 'pillars' ? 'none' : 'spotlight';
                 onChangeBackgroundEffect(nextEffect);
               }}
-              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer shadow-xs hover:opacity-90"
+              className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:opacity-90 whitespace-nowrap"
               style={{
-                backgroundColor: backgroundEffect !== 'none' ? `${tokens.primary}18` : 'transparent',
+                backgroundColor: backgroundEffect !== 'none' ? `${tokens.primary}18` : tokens.background,
                 borderColor: backgroundEffect !== 'none' ? tokens.primary : tokens.surfaceBorder,
                 color: tokens.text,
                 borderRadius: `${Math.min(tokens.radius, 8)}px`,
               }}
               title="Växla bakgrundseffekt: Spotlight, Vågor (Wavy), Gradient Animation, Ljuspelare, eller Ren minimalistisk"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-spin-slow" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>
-                {backgroundEffect === 'spotlight' && 'Bakgrund: Spotlight ✨'}
-                {backgroundEffect === 'wavy' && 'Bakgrund: Vågor 🌊'}
-                {backgroundEffect === 'gradient' && 'Bakgrund: Gradient 🎨'}
-                {backgroundEffect === 'pillars' && 'Bakgrund: Pelare 💡'}
-                {backgroundEffect === 'none' && 'Bakgrund: Ren ⏹️'}
+                {backgroundEffect === 'spotlight' && 'Spotlight ✨'}
+                {backgroundEffect === 'wavy' && 'Vågor 🌊'}
+                {backgroundEffect === 'gradient' && 'Gradient 🎨'}
+                {backgroundEffect === 'pillars' && 'Pelare 💡'}
+                {backgroundEffect === 'none' && 'Ren bakgrund'}
               </span>
             </button>
           )}
@@ -370,13 +379,13 @@ export const Header: React.FC<HeaderProps> = ({
           {/* AI Design Assistant Button */}
           <button
             onClick={onOpenChatbot}
-            className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold border transition-colors cursor-pointer"
-            style={applyThemeToApp ? {
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            style={{
               backgroundColor: `${tokens.accent}15`,
               borderColor: `${tokens.accent}35`,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title="Chatta med AI Design Assistent med Google Search Grounding"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -386,29 +395,29 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Import URL/Image Button */}
           <button
             onClick={onOpenImportModal}
-            className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold border transition-colors cursor-pointer"
-            style={applyThemeToApp ? {
-              backgroundColor: `${tokens.secondary}15`,
-              borderColor: `${tokens.secondary}35`,
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            style={{
+              backgroundColor: tokens.background,
+              borderColor: tokens.surfaceBorder,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title="Extrahera färgskalor från webblänkar (Figma etc.) eller bildimport"
           >
-            <Globe className="w-3.5 h-3.5" style={{ color: tokens.secondary }} />
-            <span>Importera Länk / Bild</span>
+            <Globe className="w-3.5 h-3.5 text-indigo-400" />
+            <span>Importera</span>
           </button>
 
           {/* Theme Manager Button */}
           <button
             onClick={onOpenThemeManager}
-            className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold border transition-colors cursor-pointer"
-            style={applyThemeToApp ? {
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+            style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title="Öppna temahanteraren för att skapa, spara och ladda teman"
           >
             <FolderHeart className="w-3.5 h-3.5 text-indigo-500" />
@@ -418,35 +427,34 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Slumpa Färgpalett (Harmonisk standard) */}
           <button
             onClick={onRandomize}
-            className="hidden sm:flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer hover:opacity-90"
-            style={applyThemeToApp ? {
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+            style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title="Slumpa fram en helt ny harmonisk färgskala"
           >
             <Dices className="w-3.5 h-3.5 text-emerald-500" />
-            <span>Slumpa ny</span>
+            <span>Slumpa</span>
           </button>
 
           {/* Cykla Färger Button (Primary -> Secondary -> Accent) */}
           {onCycleColors && (
             <button
               onClick={onCycleColors}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer hover:opacity-90"
-              style={applyThemeToApp ? {
+              className="h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+              style={{
                 backgroundColor: tokens.background,
                 borderColor: tokens.surfaceBorder,
                 color: tokens.text,
                 borderRadius: `${Math.min(tokens.radius, 8)}px`
-              } : undefined}
+              }}
               title="Cykla färger: Rotera färgroller i schemat (Primär ➔ Sekundär ➔ Accent)"
             >
               <RotateCw className="w-3.5 h-3.5 text-blue-500 hover:rotate-180 transition-transform" />
-              <span className="hidden md:inline">Cykla färger</span>
-              <span className="md:hidden">Cykla</span>
+              <span>Cykla</span>
             </button>
           )}
 
@@ -454,61 +462,59 @@ export const Header: React.FC<HeaderProps> = ({
           {onShuffleColors && (
             <button
               onClick={onShuffleColors}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer hover:opacity-90"
-              style={applyThemeToApp ? {
+              className="h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer hover:opacity-90 shadow-xs whitespace-nowrap"
+              style={{
                 backgroundColor: tokens.background,
                 borderColor: tokens.surfaceBorder,
                 color: tokens.text,
                 borderRadius: `${Math.min(tokens.radius, 8)}px`
-              } : undefined}
-              title="Slumpa ordning på färgerna: Blanda om rollerna (Primär, Sekundär, Accent) för att testa nya hierarkier med samma nyanser"
+              }}
+              title="Slumpa ordning på färgerna: Blanda om rollerna (Primär, Sekundär, Accent)"
             >
               <Shuffle className="w-3.5 h-3.5 text-purple-500" />
-              <span className="hidden md:inline">Blanda ordning</span>
-              <span className="md:hidden">Blanda</span>
+              <span>Blanda</span>
             </button>
           )}
 
           {/* Slumpa Mellanläge (Sweet Spot) Button */}
           <button
             onClick={onRandomizeSweetSpot}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all hover:scale-[1.02] cursor-pointer shadow-xs"
-            style={applyThemeToApp ? {
-              backgroundColor: tokens.accent,
-              color: tokens.accentForeground,
+            className="h-9 px-3 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all hover:opacity-90 cursor-pointer shadow-xs whitespace-nowrap"
+            style={{
+              backgroundColor: `${tokens.accent}22`,
+              borderColor: tokens.accent,
+              color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title="Slumpa fram det perfekta mellanläget: varken för mörkt eller för ljust!"
           >
-            <Dices className="w-4 h-4 animate-spin-slow" />
+            <Dices className="w-3.5 h-3.5 text-amber-500" />
             <span>Mellanläge</span>
           </button>
 
           {/* Dämpa Ytterligheter / Mjuk Kontrast Button */}
           <button
             onClick={onToggleSoftenExtremes || onSnapToSweetSpot}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-              softenActive ? 'ring-1 shadow-xs' : 'hover:opacity-90'
+            className={`h-9 px-2.5 rounded-lg text-xs font-semibold border inline-flex items-center gap-1.5 transition-all cursor-pointer shadow-xs whitespace-nowrap ${
+              softenActive ? 'ring-1' : 'hover:opacity-90'
             }`}
-            style={applyThemeToApp ? {
+            style={{
               backgroundColor: softenActive ? `${tokens.primary}22` : tokens.background,
               borderColor: softenActive ? tokens.primary : tokens.surfaceBorder,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`,
-              boxShadow: softenActive ? `0 0 0 1px ${tokens.primary}50` : undefined,
-            } : undefined}
+            }}
             title={
               softenActive
                 ? `Mjuk Kontrast är AKTIV (${Math.round((softenAmount || 0.55) * 100)}% dämpning). Klicka för att återställa till rå färgskala med full dynamik.`
-                : 'Dämpa ytterligheter: Gör de mörkaste tonerna ljusare och de ljusaste tonerna mörkare med bevarad kontrast (WCAG AA) för både mörkt och ljust läge.'
+                : 'Dämpa ytterligheter: Gör de mörkaste tonerna ljusare och de ljusaste tonerna mörkare med bevarad kontrast (WCAG AA).'
             }
           >
-            <span className="text-sm">⚖️</span>
-            <span className="hidden md:inline">Dämpa extremer</span>
-            <span className="md:hidden">Dämpa</span>
-            {softenActive ? (
+            <span>⚖️</span>
+            <span>Dämpa</span>
+            {softenActive && (
               <span 
-                className="px-1.5 py-0.5 rounded text-[9.5px] font-bold uppercase tracking-wider ml-0.5"
+                className="px-1 py-0.2 rounded text-[9px] font-bold uppercase"
                 style={{
                   backgroundColor: tokens.primary,
                   color: tokens.primaryForeground,
@@ -516,19 +522,19 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 PÅ
               </span>
-            ) : null}
+            )}
           </button>
 
           {/* Invert Light/Dark Theme */}
           <button
             onClick={onToggleThemeMode}
-            className="p-2 rounded-lg border transition-colors cursor-pointer"
-            style={applyThemeToApp ? {
+            className="h-9 w-9 inline-flex items-center justify-center rounded-lg border transition-colors cursor-pointer shadow-xs shrink-0"
+            style={{
               backgroundColor: tokens.background,
               borderColor: tokens.surfaceBorder,
               color: tokens.text,
               borderRadius: `${Math.min(tokens.radius, 8)}px`
-            } : undefined}
+            }}
             title={isDarkTheme ? 'Växla till ljust tema' : 'Växla till mörkt tema'}
           >
             {isDarkTheme ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
@@ -537,15 +543,15 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Export Button */}
           <button
             onClick={onOpenExport}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            style={applyThemeToApp ? {
+            className="h-9 px-3.5 rounded-lg text-xs font-bold shadow-xs inline-flex items-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
+            style={{
               backgroundColor: tokens.primary,
               color: tokens.primaryForeground,
               borderRadius: `${Math.min(tokens.radius, 8)}px`,
-              boxShadow: `0 2px 8px ${tokens.primary}40`
-            } : undefined}
+              boxShadow: `0 2px 8px ${tokens.primary}35`
+            }}
           >
-            <Share2 className="w-3.5 h-3.5 opacity-90" />
+            <Share2 className="w-3.5 h-3.5" />
             <span>Exportera</span>
           </button>
         </div>
